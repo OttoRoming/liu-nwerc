@@ -20,7 +20,7 @@ def search(party, parties, stack):
     print(list(range(stack[-1] + 1, len(parties))))
     for i in range(stack[-1], len(parties)):
         print(i)
-        search(party, parties, stack)
+        search(i, parties, stack)
 
 
 def main():
