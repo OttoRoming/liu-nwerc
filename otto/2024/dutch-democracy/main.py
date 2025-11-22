@@ -8,9 +8,9 @@ def init():
     return parties
 
 
-def search(party, parties, stack):
+def search(party_index, parties, stack):
     """Search for party combinations."""
-    stack.append(party)
+    stack.append(party_index)
 
     seats = 0
     for p in stack:
@@ -26,9 +26,9 @@ def search(party, parties, stack):
 def main():
     """Main entry point."""
     parties = init()
-    for party in parties:
+    for party_index in range(len(parties)):
         stack = []
-        search(party, parties, stack)
+        search(party_index, parties, stack)
 
 
 if __name__ == "__main__":
