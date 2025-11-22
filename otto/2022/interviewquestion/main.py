@@ -47,7 +47,7 @@ def find_prime_like():
 def main():
     """Main entry point."""
     startn, l = take_input()
-    a_n, b_n = process_fizzbuzz(startn, l)
+    _, b_n = process_fizzbuzz(startn, l)
     find_prime_like()
 
 
