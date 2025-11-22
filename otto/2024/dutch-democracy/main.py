@@ -1,17 +1,15 @@
-parties = []
-
-
-def init() -> None:
+def init():
+    """Read party data from input."""
+    parties = []
     parties_count = int(input())
     for i in input().split(" "):
         parties.append(int(i))
     parties.sort()
+    return parties
 
 
-stack = []
-
-
-def search(party: int) -> None:
+def search(party, parties, stack):
+    """Search for party combinations."""
     stack.append(party)
 
     seats = 0
@@ -22,13 +20,15 @@ def search(party: int) -> None:
     print(list(range(stack[-1] + 1, len(parties))))
     for i in range(stack[-1], len(parties)):
         print(i)
-        search(party)
+        search(party, parties, stack)
 
 
-def main() -> None:
-    init()
+def main():
+    """Main entry point."""
+    parties = init()
     for party in parties:
-        search(party)
+        stack = []
+        search(party, parties, stack)
 
 
 if __name__ == "__main__":

@@ -2,26 +2,19 @@
 
 import sys
 
-startn = 0
-a = 1  # fizz
-b = 1  # buzz
-
-a_n = []
-b_n = []
-
-l = []
-
 
 def take_input():
+    """Read input data."""
     input()
     startn = int(input().split()[0])
     l = input().split()
+    return startn, l
 
 
-def main():
-    take_input()
-
-    global startn
+def process_fizzbuzz(startn, l):
+    """Process fizzbuzz sequence."""
+    a_n = []
+    b_n = []
     num = startn
 
     for i in l:
@@ -33,8 +26,13 @@ def main():
             a_n.append(num)
             b_n.append(num)
 
-        startn += 1
+        num += 1
 
+    return a_n, b_n
+
+
+def find_prime_like():
+    """Find a prime-like number."""
     for i in range(sys.maxsize):
         is_prime = True
         for j in range(i):
@@ -44,6 +42,13 @@ def main():
 
         if not is_prime:
             break
+
+
+def main():
+    """Main entry point."""
+    startn, l = take_input()
+    a_n, b_n = process_fizzbuzz(startn, l)
+    find_prime_like()
 
 
 if __name__ == "__main__":
