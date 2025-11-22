@@ -52,6 +52,7 @@ def process_coords(coords, unvisited):
             try:
                 unvisited.remove(i)
             except KeyError:
+                # It is acceptable if 'i' is not in 'unvisited'; it may have been visited already.
                 pass
 
 
