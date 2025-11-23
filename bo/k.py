@@ -48,19 +48,19 @@ def main():
         cost += find_path(i - 1, n - 1, neighbors, n)
         paths.append((p, cost))
 
-    sum = 0
+    total = 0
     prob_left = 1
     paths.sort(key=lambda tuple: tuple[1])
 
     for p, cost in paths:
         p *= prob_left
         prob_left -= p
-        sum += p * cost
+        total += p * cost
 
     if prob_left > 0:
         print("impossible")
     else:
-        print(sum)
+        print(total)
 
 
 if __name__ == "__main__":

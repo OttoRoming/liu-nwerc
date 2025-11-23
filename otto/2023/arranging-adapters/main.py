@@ -7,7 +7,6 @@ import sys
 def read_input():
     """Read input data."""
     words = input().split(" ")
-    charger_count = int(words[0])
     socket_count = int(words[1])
     
     w = []
@@ -15,7 +14,7 @@ def read_input():
         w.append((float(word) / 3))
     w.sort()
     
-    return charger_count, socket_count, w
+    return socket_count, w
 
 
 def calculate_adapters(socket_count, w):
@@ -38,7 +37,7 @@ def calculate_adapters(socket_count, w):
 
 def main():
     """Main entry point."""
-    charger_count, socket_count, w = read_input()
+    socket_count, w = read_input()
     result = calculate_adapters(socket_count, w)
     print(result)
 
