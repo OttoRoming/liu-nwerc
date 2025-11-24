@@ -47,7 +47,6 @@ def process_coords(coords, unvisited):
 
         for step in r:
             i = (float(step) / 2) % 360
-            print(coord, next_coord, dir, i)
 
             try:
                 unvisited.remove(i)

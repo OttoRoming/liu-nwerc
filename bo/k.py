@@ -1,4 +1,3 @@
-from collections import deque
 
 
 def find_path(from_node, to_node, neighbors, n):

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import math
-import sys
 
 
 def read_input():
