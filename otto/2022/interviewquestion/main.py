@@ -13,22 +13,11 @@ def take_input():
 
 def process_fizzbuzz(startn, l):
     """Process fizzbuzz sequence."""
-    a_n = []
-    b_n = []
     num = startn
 
     for i in l:
-        if i == "Fizz":
-            a_n.append(num)
-        if i == "Buzz":
-            b_n.append(num)
-        elif i == "FizzBuzz":
-            a_n.append(num)
-            b_n.append(num)
-
+        # Process the fizzbuzz sequence (results not currently used)
         num += 1
-
-    return a_n, b_n
 
 
 def find_prime_like():
@@ -47,7 +36,7 @@ def find_prime_like():
 def main():
     """Main entry point."""
     startn, l = take_input()
-    _, _ = process_fizzbuzz(startn, l)
+    process_fizzbuzz(startn, l)
     find_prime_like()
 
 
