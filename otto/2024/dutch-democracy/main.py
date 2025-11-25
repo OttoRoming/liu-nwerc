@@ -2,8 +2,8 @@ def init():
     """Read party data from input."""
     parties = []
     input()  # Read party count but don't store it
-    for i in input().split(" "):
-        parties.append(int(i))
+    for party_value in input().split(" "):
+        parties.append(int(party_value))
     parties.sort()
     return parties
 

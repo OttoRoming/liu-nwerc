@@ -19,7 +19,7 @@ def read_coords():
     """Read coordinates from input."""
     coord_count = int(input())
     coords = []
-    for i in range(coord_count):
+    for _ in range(coord_count):
         coords.append(int(input().split()[1]) + 180)
     return coords
 
@@ -28,31 +28,26 @@ def create_unvisited_set():
     """Create set of all possible longitude values."""
     unvisited = set()
     for i in range(360 * 2):
-        lon = (i) / 2
+        lon = i / 2
         unvisited.add(lon)
     return unvisited
 
 
 def process_coords(coords, unvisited):
     """Process coordinates and mark visited longitudes."""
-    for i, coord in enumerate(coords):
-        next_coord = coords[0] if i == len(coords) - 1 else coords[i + 1]
+    for idx, coord in enumerate(coords):
+        next_coord = coords[0] if idx == len(coords) - 1 else coords[idx + 1]
 
-        dir, d = distance(coord, next_coord)
+        direction, d = distance(coord, next_coord)
         
-        if dir == "pos":
+        if direction == "pos":
             r = range(coord * 2, (coord - d) * 2 - 1, -1)
         else:
             r = range(coord * 2, (coord + d) * 2 + 1)
 
         for step in r:
-            i = (float(step) / 2) % 360
-
-            try:
-                unvisited.remove(i)
-            except KeyError:
-                # It is acceptable if 'i' is not in 'unvisited'; it may have been visited already.
-                pass
+            lon_val = (float(step) / 2) % 360
+            unvisited.discard(lon_val)
 
 
 def main():

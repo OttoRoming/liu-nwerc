@@ -7,9 +7,9 @@ def init():
     """Read crane data from input."""
     cranes = []
     crane_count = int(input())
-    for i in range(crane_count):
+    for idx in range(crane_count):
         s = input().split(" ")
-        cranes.append([int(s[0]), int(s[1]), int(s[2]), i])
+        cranes.append([int(s[0]), int(s[1]), int(s[2]), idx])
     return cranes
 
 

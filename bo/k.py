@@ -49,7 +49,7 @@ def main():
 
     total = 0
     prob_left = 1
-    paths.sort(key=lambda tuple: tuple[1])
+    paths.sort(key=lambda path_tuple: path_tuple[1])
 
     for p, cost in paths:
         p *= prob_left
