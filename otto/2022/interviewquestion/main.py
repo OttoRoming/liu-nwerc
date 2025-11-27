@@ -2,39 +2,30 @@
 
 import sys
 
-startn = 0
-a = 1  # fizz
-b = 1  # buzz
-
-a_n = []
-b_n = []
-
-l = []
-
 
 def take_input():
+    """Read input data."""
     input()
     startn = int(input().split()[0])
-    l = input().split()
+    sequence = input().split()
+    return startn, sequence
 
 
-def main():
-    take_input()
-
-    global startn
+def process_fizzbuzz(startn, sequence):
+    """
+    Placeholder for processing a fizzbuzz sequence.
+    Currently, this function increments the starting number for each element in the list,
+    but does not use or return the results. Intended for future implementation.
+    """
     num = startn
 
-    for i in l:
-        if i == "Fizz":
-            a_n.append(num)
-        if i == "Buzz":
-            b_n.append(num)
-        elif i == "FizzBuzz":
-            a_n.append(num)
-            b_n.append(num)
+    for _ in sequence:
+        # Process the fizzbuzz sequence (results not currently used)
+        num += 1
 
-        startn += 1
 
+def find_prime_like():
+    """Find a prime-like number."""
     for i in range(sys.maxsize):
         is_prime = True
         for j in range(i):
@@ -44,6 +35,13 @@ def main():
 
         if not is_prime:
             break
+
+
+def main():
+    """Main entry point."""
+    startn, sequence = take_input()
+    process_fizzbuzz(startn, sequence)
+    find_prime_like()
 
 
 if __name__ == "__main__":

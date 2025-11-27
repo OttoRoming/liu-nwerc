@@ -1,16 +1,6 @@
-from collections import deque
 
 
-n, m, k = map(int, input().split())
-# for each node, an array of (i, cost) where i is another node and cost the distance between them
-neighbors = [[] for _ in range(n)]
-for _ in range(m):
-    i, j, cost = map(int, input().split())
-    neighbors[i - 1].append((j - 1, cost))
-    neighbors[j - 1].append((i - 1, cost))
-
-
-def find_path(from_node, to_node):
+def find_path(from_node, to_node, neighbors, n):
     dist = {from_node: 0}
     remaining = list(range(n))
 
@@ -37,27 +27,40 @@ def find_path(from_node, to_node):
         remaining.remove(node)
 
 
-# list of tuples (p, cost)
-paths = []
-for _ in range(k):
-    i, p = input().split()
-    i = int(i)
-    p = float(p)
+def main():
+    n, m, k = map(int, input().split())
+    # for each node, an array of (i, cost) where i is another node and cost the distance between them
+    neighbors = [[] for _ in range(n)]
+    for _ in range(m):
+        i, j, cost = map(int, input().split())
+        neighbors[i - 1].append((j - 1, cost))
+        neighbors[j - 1].append((i - 1, cost))
 
-    cost = find_path(0, i - 1)
-    cost += find_path(i - 1, n - 1)
-    paths.append((p, cost))
+    # list of tuples (p, cost)
+    paths = []
+    for _ in range(k):
+        i, p = input().split()
+        i = int(i)
+        p = float(p)
 
-sum = 0
-prob_left = 1
-paths.sort(key=lambda tuple: tuple[1])
+        cost = find_path(0, i - 1, neighbors, n)
+        cost += find_path(i - 1, n - 1, neighbors, n)
+        paths.append((p, cost))
 
-for p, cost in paths:
-    p *= prob_left
-    prob_left -= p
-    sum += p * cost
+    total = 0
+    prob_left = 1
+    paths.sort(key=lambda path_tuple: path_tuple[1])
 
-if prob_left > 0:
-    print("impossible")
-else:
-    print(sum)
+    for p, cost in paths:
+        p *= prob_left
+        prob_left -= p
+        total += p * cost
+
+    if prob_left > 0:
+        print("impossible")
+    else:
+        print(total)
+
+
+if __name__ == "__main__":
+    main()
