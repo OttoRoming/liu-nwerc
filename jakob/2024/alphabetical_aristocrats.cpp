@@ -7,7 +7,7 @@ using namespace std;
 string caps(string a)
 {
     smatch match;
-    regex re("[A-Z]");
+    regex re("[A-Z](\\w| |')*");
     regex_search(a, match, re);
     return match.str();
 }
