@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
+
 def distance(start, end):
+    """Calculate distance between two coordinates."""
     pos = start - end
     pos %= 360
 
@@ -13,42 +15,52 @@ def distance(start, end):
         return "pos", pos
 
 
-coord_count = int(input())
-coords = []
-for i in range(coord_count):
-    coords.append(int(input().split()[1])+180)
-
-unvisited = set()
-for i in range(360*2):
-    lon = (i)/2
-    unvisited.add(lon)
+def read_coords():
+    """Read coordinates from input."""
+    coord_count = int(input())
+    coords = []
+    for _ in range(coord_count):
+        coords.append(int(input().split()[1]) + 180)
+    return coords
 
 
-for i, coord in enumerate(coords):
-    next: int
-    if i == len(coords) - 1:
-        next = coords[0]
+def create_unvisited_set():
+    """Create set of all possible longitude values."""
+    unvisited = set()
+    for i in range(360 * 2):
+        lon = i / 2
+        unvisited.add(lon)
+    return unvisited
+
+
+def process_coords(coords, unvisited):
+    """Process coordinates and mark visited longitudes."""
+    for idx, coord in enumerate(coords):
+        next_coord = coords[0] if idx == len(coords) - 1 else coords[idx + 1]
+
+        direction, d = distance(coord, next_coord)
+        
+        if direction == "pos":
+            r = range(coord * 2, (coord - d) * 2 - 1, -1)
+        else:
+            r = range(coord * 2, (coord + d) * 2 + 1)
+
+        for step in r:
+            lon_val = (float(step) / 2) % 360
+            unvisited.discard(lon_val)
+
+
+def main():
+    """Main entry point."""
+    coords = read_coords()
+    unvisited = create_unvisited_set()
+    process_coords(coords, unvisited)
+
+    if len(unvisited) == 0:
+        print("yes")
     else:
-        next = coords[i+1]
+        print("no", list(unvisited)[0] - 180.0)
 
 
-    dir, d = distance(coord, next)
-    r: range
-    if dir == "pos":
-        r = range(coord*2, (coord-d)*2-1, -1)
-    else:
-        r = range(coord*2, (coord+d)*2+1)
-
-    for step in r:
-        i = (float(step)/2)%360
-        print (coord, next, dir, i)
-
-        try:
-            unvisited.remove(i)
-        except KeyError:
-            pass
-
-if len(unvisited) == 0:
-    print("yes")
-else:
-    print("no", list(unvisited)[0]-180.0)
+if __name__ == "__main__":
+    main()
